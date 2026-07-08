@@ -1,0 +1,93 @@
+name: Daily NOAA Pull, Rotate & Score
+
+# Runs shortly after 00:00 America/New_York plus a lag margin so the prior day's
+# NWS observations are fully published. 11:00 UTC ≈ 06:00–07:00 ET, ≈ 03:00–04:00
+# PT — a few hours after local midnight for the contiguous US. If you add far-west
+# stations (Hawaii/Alaska), shift this later.
+on:
+  schedule:
+    - cron: '0 11 * * *'
+  workflow_dispatch:
+
+# Allow the job to commit the pulled JSON back to the repo.
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-noaa-pull
+  cancel-in-progress: false
+
+jobs:
+  pull-rotate-score:
+    runs-on: ubuntu-latest
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install backend deps
+        working-directory: ./backend
+        run: |
+          npm install
+          npx prisma generate
+
+      - name: Install puller deps
+        working-directory: ./data-pull
+        run: pip install -r requirements.txt
+
+      # 1. Rotate: set today's (America/New_York) scheduled station as current.
+      - name: Rotate station
+        working-directory: ./backend
+        run: node scripts/rotateStation.js
+
+      # 2. Pull yesterday's actuals for yesterday's scheduled station.
+      - name: Pull yesterday's actuals
+        id: pull
+        run: |
+          YESTERDAY=$(TZ=America/New_York date -d 'yesterday' +%F)
+          echo "Yesterday (America/New_York): $YESTERDAY"
+          STATION=$(node -e "const s=require('./data-pull/schedule.json').schedule||{}; process.stdout.write(s['$YESTERDAY']||'')")
+          if [ -z "$STATION" ]; then
+            echo "::warning::No station scheduled for $YESTERDAY in data-pull/schedule.json — skipping pull/import/score."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "Scheduled station for $YESTERDAY: $STATION"
+          python data-pull/daily_weather_pull.py "$STATION" "$YESTERDAY"
+          echo "skip=false" >> "$GITHUB_OUTPUT"
+          echo "station=$STATION" >> "$GITHUB_OUTPUT"
+          echo "date=$YESTERDAY" >> "$GITHUB_OUTPUT"
+
+      # 3. Import the reading + calculate scores against the production DB.
+      - name: Import readings and calculate scores
+        if: steps.pull.outputs.skip == 'false'
+        working-directory: ./backend
+        run: |
+          FILE="../data-pull/output/${{ steps.pull.outputs.station }}_${{ steps.pull.outputs.date }}.json"
+          node scripts/importReadings.js "$FILE"
+          node scripts/calculateScores.js "${{ steps.pull.outputs.date }}"
+
+      # 4. Commit the pulled JSON for audit (scoped so it doesn't redeploy frontend).
+      - name: Commit output JSON
+        if: steps.pull.outputs.skip == 'false'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data-pull/output/
+          if git diff --staged --quiet; then
+            echo "No new output to commit."
+          else
+            git commit -m "chore(data): actuals for ${{ steps.pull.outputs.station }} ${{ steps.pull.outputs.date }} [skip ci]"
+            git push
+          fi
