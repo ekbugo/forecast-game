@@ -1,0 +1,127 @@
+// Prisma schema for forecast-game
+// Learn more: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                    Int        @id @default(autoincrement())
+  email                 String     @unique
+  username              String     @unique
+  passwordHash          String     @map("password_hash")
+  preferredLang         String     @default("es") @map("preferred_lang") // 'es' or 'en'
+  totalPoints           Int        @default(0) @map("total_points")
+  passwordResetToken    String?    @map("password_reset_token")
+  passwordResetExpires  DateTime?  @map("password_reset_expires")
+  createdAt             DateTime   @default(now()) @map("created_at")
+  updatedAt             DateTime   @updatedAt @map("updated_at")
+
+  forecasts     Forecast[]
+  scores        Score[]
+
+  @@index([totalPoints(sort: Desc)])
+  @@map("users")
+}
+
+model Station {
+  id            String   @id                        // NWS station ID, e.g. 'KDEN' (== icaoId for ASOS)
+  icaoId        String   @map("icao_id")
+  name          String
+  city          String?
+  state         String?
+  timezone      String                              // IANA tz, e.g. 'America/Denver'
+  latitude      Decimal? @db.Decimal(10, 6)
+  longitude     Decimal? @db.Decimal(10, 6)
+  precipReported Boolean @default(true) @map("precip_reported")
+  isCurrent     Boolean  @default(false) @map("is_current") // exactly one station is current at a time
+
+  forecasts     Forecast[]
+  readings      StationReading[]
+
+  @@index([isCurrent])
+  @@map("stations")
+}
+
+model Forecast {
+  id           Int      @id @default(autoincrement())
+  userId       Int      @map("user_id")
+  stationId    String   @map("station_id")
+  forecastDate DateTime @map("forecast_date") @db.Date // the (America/New_York) schedule date this forecast targets
+
+  // User's predictions
+  maxTemp      Int      @map("max_temp")      // °F
+  minTemp      Int      @map("min_temp")      // °F
+  windGust     Int      @map("wind_gust")     // mph
+  precipRange  Int      @map("precip_range")  // 1-7
+
+  submittedAt  DateTime @default(now()) @map("submitted_at")
+
+  user         User     @relation(fields: [userId], references: [id])
+  station      Station  @relation(fields: [stationId], references: [id])
+  score        Score?
+
+  @@unique([userId, forecastDate])
+  @@index([forecastDate])
+  @@map("forecasts")
+}
+
+model StationReading {
+  id               Int      @id @default(autoincrement())
+  stationId        String   @map("station_id")
+  readingDate      DateTime @map("reading_date") @db.Date
+
+  maxTempRaw       Decimal  @map("max_temp_raw") @db.Decimal(5, 2)
+  maxTempRounded   Int      @map("max_temp_rounded")
+  minTempRaw       Decimal  @map("min_temp_raw") @db.Decimal(5, 2)
+  minTempRounded   Int      @map("min_temp_rounded")
+  windGustMax      Decimal  @map("wind_gust_max") @db.Decimal(5, 2)
+
+  // Precipitation is nullable: null + precipReported=false means the station does
+  // not report precip (shown as N/A, scores 0). A genuine dry day is 0.00 with
+  // precipReported=true. See PRECIPITATION_HANDLING.md.
+  precipReported   Boolean  @default(true) @map("precip_reported")
+  precipTotal      Decimal? @map("precip_total") @db.Decimal(5, 2)
+  precipRange      Int?     @map("precip_range") // calculated 1-7, null when not reported
+
+  importedAt       DateTime @default(now()) @map("imported_at")
+
+  station          Station  @relation(fields: [stationId], references: [id])
+  scores           Score[]
+
+  @@unique([stationId, readingDate])
+  @@index([readingDate])
+  @@map("station_readings")
+}
+
+model Score {
+  id            Int      @id @default(autoincrement())
+  userId        Int      @map("user_id")
+  forecastId    Int      @unique @map("forecast_id")
+  readingId     Int      @map("reading_id")
+  scoreDate     DateTime @map("score_date") @db.Date
+
+  // Individual scores
+  maxTempScore  Int      @map("max_temp_score")   // 0-5
+  minTempScore  Int      @map("min_temp_score")   // 0-5
+  windGustScore Int      @map("wind_gust_score")  // 0-5
+  precipScore   Int      @map("precip_score")     // 0-5 (0 on non-reporting days)
+  perfectBonus  Int      @default(0) @map("perfect_bonus") // +3 if all four are perfect
+
+  totalScore    Int      @map("total_score")
+
+  calculatedAt  DateTime @default(now()) @map("calculated_at")
+
+  user          User     @relation(fields: [userId], references: [id])
+  forecast      Forecast @relation(fields: [forecastId], references: [id])
+  reading       StationReading @relation(fields: [readingId], references: [id])
+
+  @@unique([userId, scoreDate])
+  @@index([scoreDate])
+  @@map("scores")
+}

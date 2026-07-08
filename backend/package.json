@@ -1,0 +1,38 @@
+{
+  "name": "forecast-game-backend",
+  "version": "1.0.0",
+  "description": "Backend API for forecast-game (NOAA/NWS forecasting competition)",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js",
+    "build": "npx prisma generate",
+    "postinstall": "npx prisma generate",
+    "rotate-station": "node scripts/rotateStation.js",
+    "import-readings": "node scripts/importReadings.js",
+    "calculate-scores": "node scripts/calculateScores.js",
+    "test:scoring": "node scripts/testScoring.js",
+    "db:migrate": "npx prisma migrate dev",
+    "db:deploy": "npx prisma migrate deploy",
+    "db:seed": "npx prisma db seed",
+    "db:studio": "npx prisma studio"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.22.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "express-rate-limit": "^7.4.1",
+    "express-validator": "^7.2.0",
+    "jsonwebtoken": "^9.0.2",
+    "luxon": "^3.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7",
+    "prisma": "^5.22.0"
+  }
+}
