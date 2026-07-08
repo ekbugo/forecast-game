@@ -1,0 +1,138 @@
+{
+  "app": {
+    "title": "Forecast Game",
+    "tagline": "Desafío de Pronóstico del Tiempo de EE. UU.",
+    "dataSource": "Datos oficiales NOAA / NWS"
+  },
+  "nav": {
+    "home": "Inicio",
+    "forecast": "Pronóstico",
+    "leaderboard": "Clasificación",
+    "history": "Mi Historial",
+    "login": "Iniciar Sesión",
+    "register": "Registrarse",
+    "logout": "Cerrar Sesión"
+  },
+  "auth": {
+    "login": "Iniciar Sesión",
+    "register": "Registrarse",
+    "email": "Correo electrónico",
+    "username": "Nombre de usuario / handle",
+    "usernameHint": "3-30 caracteres, letras, números y guion bajo. Puedes usar tu handle de YouTube.",
+    "password": "Contraseña",
+    "confirmPassword": "Confirmar contraseña",
+    "noAccount": "¿No tienes cuenta?",
+    "hasAccount": "¿Ya tienes cuenta?",
+    "passwordMin": "La contraseña debe tener al menos 8 caracteres",
+    "passwordsMustMatch": "Las contraseñas no coinciden",
+    "changePassword": "Cambiar Contraseña",
+    "currentPassword": "Contraseña Actual",
+    "newPassword": "Nueva Contraseña",
+    "confirmNewPassword": "Confirmar Nueva Contraseña",
+    "passwordChanged": "¡Contraseña cambiada exitosamente!",
+    "currentPasswordIncorrect": "La contraseña actual es incorrecta"
+  },
+  "forecast": {
+    "title": "Enviar Pronóstico",
+    "currentStation": "Estación del Día",
+    "forDate": "Pronóstico para",
+    "maxTemp": "Temperatura Máxima",
+    "minTemp": "Temperatura Mínima",
+    "windGust": "Ráfaga de Viento Máxima",
+    "precipitation": "Precipitación Acumulada",
+    "precipBucket": "Rango de precipitación",
+    "submit": "Enviar Pronóstico",
+    "submitted": "¡Pronóstico Enviado!",
+    "alreadySubmitted": "Ya has enviado tu pronóstico para el día de esta estación.",
+    "yourForecastFor": "Tu pronóstico para",
+    "closed": "Envíos Cerrados",
+    "closesAt": "Se cierra a las",
+    "closesLocal": "Cierra a las 11:59 PM {{tz}} (hora local de la estación)",
+    "remaining": "Tiempo restante",
+    "minutes": "minutos",
+    "noStation": "No hay estación programada",
+    "noStationDesc": "No hay una estación programada para hoy. Vuelve más tarde.",
+    "oncePerDay": "Puedes enviar un pronóstico por día. No se permiten cambios después del envío.",
+    "submittedAt": "Enviado",
+    "precipRanges": {
+      "1": "0.00\" - 0.10\"",
+      "2": "0.11\" - 0.25\"",
+      "3": "0.26\" - 0.50\"",
+      "4": "0.51\" - 1.00\"",
+      "5": "1.01\" - 1.50\"",
+      "6": "1.51\" - 2.50\"",
+      "7": "2.51\" o más"
+    }
+  },
+  "station": {
+    "id": "ID de estación",
+    "naTooltip": "Esta estación no reporta precipitación, por lo que esa categoría vale 0 puntos para todos hoy."
+  },
+  "leaderboard": {
+    "title": "Clasificación",
+    "rank": "Puesto",
+    "username": "Usuario",
+    "points": "Puntos",
+    "allTime": "Histórico",
+    "weekly": "Semanal",
+    "monthly": "Mensual",
+    "yourRank": "Tu posición",
+    "noData": "No hay datos disponibles",
+    "you": "Tú"
+  },
+  "scores": {
+    "title": "Mi Historial de Puntuaciones",
+    "forecast": "Pronóstico",
+    "actual": "Actual",
+    "total": "Total",
+    "perfectBonus": "¡Bono Perfecto!",
+    "maxTemp": "Temp. Máx.",
+    "minTemp": "Temp. Mín.",
+    "windGust": "Ráfaga",
+    "precip": "Precip.",
+    "noScores": "No tienes puntuaciones todavía",
+    "comparison": "Comparación",
+    "breakdown": "Desglose de Puntuación",
+    "parameter": "Parámetro"
+  },
+  "stats": {
+    "totalPoints": "Puntos Totales",
+    "forecastsMade": "Pronósticos Realizados",
+    "avgScore": "Promedio por Pronóstico",
+    "perfectForecasts": "Pronósticos Perfectos"
+  },
+  "home": {
+    "howItWorks": "¿Cómo funciona?",
+    "step1Title": "1. Pronostica",
+    "step1Desc": "Predice temperatura máxima y mínima, ráfagas de viento y el rango de precipitación de la estación del día",
+    "step2Title": "2. Envía antes de las 11:59 PM local",
+    "step2Desc": "Los envíos cierran a las 11:59 PM en la zona horaria local de la estación. Los envíos tardíos se rechazan.",
+    "step3Title": "3. Compara",
+    "step3Desc": "Tu pronóstico se compara con las observaciones oficiales del NWS al día siguiente",
+    "step4Title": "4. Gana puntos",
+    "step4Desc": "Hasta 20 puntos por día + 3 puntos de bono por pronóstico perfecto",
+    "scoringSystem": "Sistema de Puntuación",
+    "temperature": "Temperatura (Máx/Mín)",
+    "windGust": "Ráfaga de Viento",
+    "precipitation": "Precipitación",
+    "exact": "Exacto",
+    "orMore": "o más",
+    "precipRangesTitle": "Rangos de Precipitación",
+    "range": "Rango",
+    "rangesDiff": "rangos diff.",
+    "rangeDiff": "rango diff.",
+    "perfectBonusTitle": "¡Bono de Pronóstico Perfecto: +3 puntos!",
+    "perfectBonusDesc": "Si aciertas los cuatro parámetros perfectamente, recibes 3 puntos adicionales.",
+    "precipNaTitle": "Algunas estaciones no reportan precipitación",
+    "precipNaDesc": "Cuando la estación del día no reporta precipitación, esa categoría muestra N/A y vale 0 puntos para todos (así que un pronóstico perfecto no es posible ese día)."
+  },
+  "common": {
+    "loading": "Cargando...",
+    "cancel": "Cancelar",
+    "points": "puntos",
+    "of": "de"
+  },
+  "errors": {
+    "server": "Error del servidor. Intenta más tarde."
+  }
+}
