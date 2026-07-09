@@ -1,0 +1,13 @@
+{
+  "_comment": "Admin-edited station rotation. Maps a date (in America/New_York) to the NWS station ID that is the 'station of the day'. Keep this populated at least a week ahead. Every stationId must exist in stations.json. To run one station for several days, repeat it on consecutive dates. See data-pull/README.md and §6.4 of the build brief.",
+  "schedule": {
+    "2026-07-08": "KDEN",
+    "2026-07-09": "KAUS",
+    "2026-07-10": "KJFK",
+    "2026-07-11": "KLAX",
+    "2026-07-12": "KORD",
+    "2026-07-13": "KSEA",
+    "2026-07-14": "KMIA",
+    "2026-07-15": "KATL"
+  }
+}

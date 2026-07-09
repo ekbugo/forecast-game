@@ -1,0 +1,138 @@
+{
+  "app": {
+    "title": "Forecast Game",
+    "tagline": "US Weather Forecasting Challenge",
+    "dataSource": "Official NOAA / NWS data"
+  },
+  "nav": {
+    "home": "Home",
+    "forecast": "Forecast",
+    "leaderboard": "Leaderboard",
+    "history": "My History",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "email": "Email",
+    "username": "Username / handle",
+    "usernameHint": "3-30 characters, letters, numbers and underscores. Use your YouTube handle if you like.",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "passwordMin": "Password must be at least 8 characters",
+    "passwordsMustMatch": "Passwords do not match",
+    "changePassword": "Change Password",
+    "currentPassword": "Current Password",
+    "newPassword": "New Password",
+    "confirmNewPassword": "Confirm New Password",
+    "passwordChanged": "Password changed successfully!",
+    "currentPasswordIncorrect": "Current password is incorrect"
+  },
+  "forecast": {
+    "title": "Submit Forecast",
+    "currentStation": "Station of the Day",
+    "forDate": "Forecast for",
+    "maxTemp": "Maximum Temperature",
+    "minTemp": "Minimum Temperature",
+    "windGust": "Maximum Wind Gust",
+    "precipitation": "Accumulated Precipitation",
+    "precipBucket": "Precipitation range",
+    "submit": "Submit Forecast",
+    "submitted": "Forecast Submitted!",
+    "alreadySubmitted": "You have already submitted your forecast for this station's day.",
+    "yourForecastFor": "Your forecast for",
+    "closed": "Submissions Closed",
+    "closesAt": "Closes at",
+    "closesLocal": "Closes 11:59 PM {{tz}} (station local time)",
+    "remaining": "Time remaining",
+    "minutes": "minutes",
+    "noStation": "No station scheduled",
+    "noStationDesc": "There is no station scheduled for today. Please check back later.",
+    "oncePerDay": "You can submit one forecast per day. No changes after submitting.",
+    "submittedAt": "Submitted",
+    "precipRanges": {
+      "1": "0.00\" - 0.10\"",
+      "2": "0.11\" - 0.25\"",
+      "3": "0.26\" - 0.50\"",
+      "4": "0.51\" - 1.00\"",
+      "5": "1.01\" - 1.50\"",
+      "6": "1.51\" - 2.50\"",
+      "7": "2.51\" or more"
+    }
+  },
+  "station": {
+    "id": "Station ID",
+    "naTooltip": "This station doesn't report precipitation, so that category scores 0 for everyone today."
+  },
+  "leaderboard": {
+    "title": "Leaderboard",
+    "rank": "Rank",
+    "username": "Username",
+    "points": "Points",
+    "allTime": "All Time",
+    "weekly": "Weekly",
+    "monthly": "Monthly",
+    "yourRank": "Your rank",
+    "noData": "No data available",
+    "you": "You"
+  },
+  "scores": {
+    "title": "My Score History",
+    "forecast": "Forecast",
+    "actual": "Actual",
+    "total": "Total",
+    "perfectBonus": "Perfect Bonus!",
+    "maxTemp": "Max Temp",
+    "minTemp": "Min Temp",
+    "windGust": "Wind Gust",
+    "precip": "Precip.",
+    "noScores": "You don't have any scores yet",
+    "comparison": "Comparison",
+    "breakdown": "Score Breakdown",
+    "parameter": "Parameter"
+  },
+  "stats": {
+    "totalPoints": "Total Points",
+    "forecastsMade": "Forecasts Made",
+    "avgScore": "Average Score",
+    "perfectForecasts": "Perfect Forecasts"
+  },
+  "home": {
+    "howItWorks": "How It Works",
+    "step1Title": "1. Forecast",
+    "step1Desc": "Predict max/min temperature, wind gusts, and the precipitation range for the station of the day",
+    "step2Title": "2. Submit by 11:59 PM local",
+    "step2Desc": "Submissions close at 11:59 PM in the station's local timezone. Late entries are rejected.",
+    "step3Title": "3. Compare",
+    "step3Desc": "Your forecast is compared against official NWS observations the next day",
+    "step4Title": "4. Earn Points",
+    "step4Desc": "Up to 20 points per day + 3 point bonus for a perfect forecast",
+    "scoringSystem": "Scoring System",
+    "temperature": "Temperature (Max/Min)",
+    "windGust": "Wind Gust",
+    "precipitation": "Precipitation",
+    "exact": "Exact",
+    "orMore": "or more",
+    "precipRangesTitle": "Precipitation Ranges",
+    "range": "Range",
+    "rangesDiff": "ranges diff.",
+    "rangeDiff": "range diff.",
+    "perfectBonusTitle": "Perfect Forecast Bonus: +3 points!",
+    "perfectBonusDesc": "If you get all four parameters exactly right, you receive 3 additional points.",
+    "precipNaTitle": "Some stations don't report precipitation",
+    "precipNaDesc": "When the station of the day doesn't report precipitation, that category shows N/A and scores 0 for everyone (so a perfect forecast isn't possible that day)."
+  },
+  "common": {
+    "loading": "Loading...",
+    "cancel": "Cancel",
+    "points": "points",
+    "of": "of"
+  },
+  "errors": {
+    "server": "Server error. Try again later."
+  }
+}

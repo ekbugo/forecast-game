@@ -1,0 +1,134 @@
+[
+  {
+    "stationId": "KDEN",
+    "icaoId": "KDEN",
+    "name": "Denver International Airport",
+    "city": "Denver",
+    "state": "CO",
+    "timezone": "America/Denver",
+    "lat": 39.85,
+    "lon": -104.67,
+    "precipReported": true
+  },
+  {
+    "stationId": "KAUS",
+    "icaoId": "KAUS",
+    "name": "Austin-Bergstrom International Airport",
+    "city": "Austin",
+    "state": "TX",
+    "timezone": "America/Chicago",
+    "lat": 30.19,
+    "lon": -97.67,
+    "precipReported": true
+  },
+  {
+    "stationId": "KJFK",
+    "icaoId": "KJFK",
+    "name": "John F. Kennedy International Airport",
+    "city": "New York",
+    "state": "NY",
+    "timezone": "America/New_York",
+    "lat": 40.64,
+    "lon": -73.78,
+    "precipReported": true
+  },
+  {
+    "stationId": "KLAX",
+    "icaoId": "KLAX",
+    "name": "Los Angeles International Airport",
+    "city": "Los Angeles",
+    "state": "CA",
+    "timezone": "America/Los_Angeles",
+    "lat": 33.94,
+    "lon": -118.41,
+    "precipReported": true
+  },
+  {
+    "stationId": "KORD",
+    "icaoId": "KORD",
+    "name": "Chicago O'Hare International Airport",
+    "city": "Chicago",
+    "state": "IL",
+    "timezone": "America/Chicago",
+    "lat": 41.98,
+    "lon": -87.90,
+    "precipReported": true
+  },
+  {
+    "stationId": "KSEA",
+    "icaoId": "KSEA",
+    "name": "Seattle-Tacoma International Airport",
+    "city": "Seattle",
+    "state": "WA",
+    "timezone": "America/Los_Angeles",
+    "lat": 47.44,
+    "lon": -122.31,
+    "precipReported": true
+  },
+  {
+    "stationId": "KMIA",
+    "icaoId": "KMIA",
+    "name": "Miami International Airport",
+    "city": "Miami",
+    "state": "FL",
+    "timezone": "America/New_York",
+    "lat": 25.79,
+    "lon": -80.29,
+    "precipReported": true
+  },
+  {
+    "stationId": "KATL",
+    "icaoId": "KATL",
+    "name": "Hartsfield-Jackson Atlanta International Airport",
+    "city": "Atlanta",
+    "state": "GA",
+    "timezone": "America/New_York",
+    "lat": 33.63,
+    "lon": -84.44,
+    "precipReported": true
+  },
+  {
+    "stationId": "KPHX",
+    "icaoId": "KPHX",
+    "name": "Phoenix Sky Harbor International Airport",
+    "city": "Phoenix",
+    "state": "AZ",
+    "timezone": "America/Phoenix",
+    "lat": 33.43,
+    "lon": -112.01,
+    "precipReported": true
+  },
+  {
+    "stationId": "KBOS",
+    "icaoId": "KBOS",
+    "name": "Boston Logan International Airport",
+    "city": "Boston",
+    "state": "MA",
+    "timezone": "America/New_York",
+    "lat": 42.36,
+    "lon": -71.01,
+    "precipReported": true
+  },
+  {
+    "stationId": "KMSP",
+    "icaoId": "KMSP",
+    "name": "Minneapolis-St. Paul International Airport",
+    "city": "Minneapolis",
+    "state": "MN",
+    "timezone": "America/Chicago",
+    "lat": 44.88,
+    "lon": -93.22,
+    "precipReported": true
+  },
+  {
+    "stationId": "KSFO",
+    "icaoId": "KSFO",
+    "name": "San Francisco International Airport",
+    "city": "San Francisco",
+    "state": "CA",
+    "timezone": "America/Los_Angeles",
+    "lat": 37.62,
+    "lon": -122.37,
+    "precipReported": true
+  }
+]

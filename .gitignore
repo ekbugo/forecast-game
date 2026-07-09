@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Environment
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# Build output
+frontend/dist/
+backend/dist/
+
+# Prisma
+backend/prisma/*.db
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+data-pull/.venv/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+
+# Misc
+*.tsbuildinfo
